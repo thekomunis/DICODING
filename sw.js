@@ -9,10 +9,10 @@ const { precacheAndRoute, cleanupOutdatedCaches } = workbox.precaching;
 
 // Precache static assets
 precacheAndRoute([
-  { url: "/thekomunis.github.io/index.html", revision: "1" },
-  { url: "/thekomunis.github.io/manifest.json", revision: "1" },
-  { url: "/thekomunis.github.io/styles/main.css", revision: "1" },
-  { url: "/thekomunis.github.io/scripts/app.js", revision: "1" },
+  { url: "/index.html", revision: "1" },
+  { url: "/manifest.json", revision: "1" },
+  { url: "/styles/main.css", revision: "1" },
+  { url: "/scripts/app.js", revision: "1" },
 ]);
 
 // Clean up outdated caches
