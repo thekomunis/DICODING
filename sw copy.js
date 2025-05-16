@@ -5,18 +5,16 @@ importScripts(
 const { registerRoute } = workbox.routing;
 const { CacheFirst, NetworkFirst, StaleWhileRevalidate } = workbox.strategies;
 const { ExpirationPlugin } = workbox.expiration;
-const { precacheAndRoute, cleanupOutdatedCaches } = workbox.precaching;
+const { precacheAndRoute } = workbox.precaching;
 
 // Precache static assets
 precacheAndRoute([
-  { url: "/thekomunis.github.io/index.html", revision: "1" },
-  { url: "/thekomunis.github.io/manifest.json", revision: "1" },
-  { url: "/thekomunis.github.io/styles/main.css", revision: "1" },
-  { url: "/thekomunis.github.io/scripts/app.js", revision: "1" },
+  { url: "/", revision: "1" },
+  { url: "/index.html", revision: "1" },
+  { url: "/manifest.json", revision: "1" },
+  { url: "/styles/main.css", revision: "1" },
+  { url: "/scripts/app.js", revision: "1" },
 ]);
-
-// Clean up outdated caches
-cleanupOutdatedCaches();
 
 // Cache images with CacheFirst strategy
 registerRoute(
@@ -46,7 +44,7 @@ registerRoute(
   })
 );
 
-// Cache styles and scripts with StaleWhileRevalidate strategy
+// Cache other assets with StaleWhileRevalidate strategy
 registerRoute(
   ({ request }) =>
     request.destination === "style" || request.destination === "script",
@@ -55,43 +53,16 @@ registerRoute(
   })
 );
 
-// Handle navigation requests for SPAs
-registerRoute(
-  ({ request }) => request.mode === "navigate",
-  new NetworkFirst({
-    cacheName: "pages",
-    plugins: [
-      new ExpirationPlugin({
-        maxEntries: 50,
-      }),
-    ],
-  })
-);
-
 // Handle push notifications
 self.addEventListener("push", (event) => {
-  if (event.data) {
-    const options = event.data.json();
-    event.waitUntil(
-      self.registration.showNotification(options.title, options.options)
-    );
-  } else {
-    console.error("Push event received without data.");
-  }
+  const options = event.data.json();
+  event.waitUntil(
+    self.registration.showNotification(options.title, options.options)
+  );
 });
 
 // Handle notification clicks
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
-  event.waitUntil(clients.openWindow("/thekomunis.github.io/"));
+  event.waitUntil(clients.openWindow("/"));
 });
-
-// Debugging precaching issues (optional, for development)
-workbox.precaching.addPlugins([
-  {
-    requestWillFetch: async ({ request }) => {
-      console.log("Precaching:", request.url);
-      return request;
-    },
-  },
-]);
