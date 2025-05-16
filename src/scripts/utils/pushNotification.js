@@ -9,7 +9,9 @@ class PushNotificationService {
   async init() {
     if ("serviceWorker" in navigator && "PushManager" in window) {
       try {
-        this.swRegistration = await navigator.serviceWorker.register("/sw.js");
+        this.swRegistration = await navigator.serviceWorker.register(
+          "../sw.js"
+        );
         return true;
       } catch (error) {
         console.error("Service Worker registration failed:", error);

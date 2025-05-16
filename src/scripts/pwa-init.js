@@ -32,7 +32,7 @@ class PWAInitializer {
     toggleButton.setAttribute("aria-label", "Aktifkan/matikan notifikasi");
 
     // Set status awal
-    this.updateNotificationButton(toggleButton);
+    // this.updateNotificationButton(toggleButton);
 
     // Tambahkan event handler
     toggleButton.addEventListener("click", async () => {
@@ -42,7 +42,7 @@ class PWAInitializer {
       } else {
         await pushNotificationService.subscribe();
       }
-      this.updateNotificationButton(toggleButton);
+      // this.updateNotificationButton(toggleButton);
     });
 
     notificationItem.appendChild(toggleButton);
