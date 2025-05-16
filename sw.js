@@ -9,10 +9,10 @@ const { precacheAndRoute, cleanupOutdatedCaches } = workbox.precaching;
 
 // Precache static assets
 precacheAndRoute([
-  { url: "/index.html", revision: "1" },
-  { url: "/manifest.json", revision: "1" },
-  { url: "/styles/main.css", revision: "1" },
-  { url: "/scripts/app.js", revision: "1" },
+  { url: "/dicoding/index.html", revision: "1" },
+  { url: "/dicoding/manifest.json", revision: "1" },
+  { url: "/dicoding/styles/main.css", revision: "1" },
+  { url: "/dicoding/scripts/app.js", revision: "1" },
 ]);
 
 // Clean up outdated caches
