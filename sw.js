@@ -52,6 +52,17 @@ registerRoute(
     cacheName: "static-resources",
   })
 );
+registerRoute(
+  ({ request }) => request.mode === "navigate",
+  new workbox.strategies.NetworkFirst({
+    cacheName: "pages-cache",
+    plugins: [
+      new workbox.expiration.ExpirationPlugin({
+        maxEntries: 50,
+      }),
+    ],
+  })
+);
 
 // Handle push notifications
 self.addEventListener("push", (event) => {
