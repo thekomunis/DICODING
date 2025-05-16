@@ -11,8 +11,8 @@ const { precacheAndRoute, cleanupOutdatedCaches } = workbox.precaching;
 precacheAndRoute([
   { url: "/dicoding/index.html", revision: "1" },
   { url: "/dicoding/manifest.json", revision: "1" },
-  { url: "/dicoding/styles/main.css", revision: "1" },
-  { url: "/dicoding/scripts/app.js", revision: "1" },
+  { url: "/dicoding/styles.css", revision: "1" },
+  { url: "/dicoding/scripts/index.js", revision: "1" },
 ]);
 
 // Clean up outdated caches
