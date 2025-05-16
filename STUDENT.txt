@@ -1,2 +1,2 @@
-APP_URL=<url_aplikasi>
-MAP_SERVICE_API_KEY=<api_key>
+APP_URL=https://thekomunis.github.io/dicoding/#/
+MAP_SERVICE_API_KEY=12345abcde12345abcde12345abcde12
